@@ -6,7 +6,7 @@ class ClasseDefeito(models.IntegerChoices):
     Severo = 2
         
 class TipoDefeito(models.TextChoices):
-    NA = "NA"
+    NA = "N/A"
     Ardido = "Ardido"
     Furado = "Furado"
     Quebrado = "Quebrado"
@@ -15,7 +15,7 @@ class TipoDefeito(models.TextChoices):
 class Sementes(models.Model):
     Id = models.IntegerField(primary_key=True)
     Defeito = models.BooleanField(default=False)
-    TipoDefeito = models.CharField(max_length=20, choices=TipoDefeito.choices, default=TipoDefeito.NA)
+    TipoDefeito = models.CharField(max_length=20, choices=TipoDefeito.choices, default=TipoDefeito.NA,blank=True, null=True)
     IntensidadeDefeito = models.IntegerField(choices=ClasseDefeito, default=ClasseDefeito.Nao)
     Imagem = models.ImageField(upload_to='sementes/imagens/')
     Classificado = models.BooleanField(default=False)

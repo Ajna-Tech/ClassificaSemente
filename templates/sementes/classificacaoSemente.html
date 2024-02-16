@@ -1,24 +1,28 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
-
 {% block title %}Classificação{% endblock %}
 
 {% block content %}
-    <div class="container">
-        <h1>Classificar</h1>
-    </div>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Classificar</h1>
 
-    <div class="offset-1 col-3">
-        <div class="image-preview">
-            <img src="{{ semente.Imagem.url }}" alt="Imagem da semente">
-        </div>
-        <form method="post">
-            <div class="form-group">
-                {% csrf_token %}
-                {{ updateSemente|crispy }}
-                <input type="submit" class="btn btn-primary" value="Classificar">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="image-preview text-center mb-4">
+                            <img src="{{ semente.Imagem.url }}" alt="Imagem da semente" class="img-fluid">
+                        </div>
+                        <form method="post">
+                            <div class="form-group">
+                                {% csrf_token %}
+                                {{ updateSemente|crispy }}
+                                <button type="submit" class="btn btn-primary btn-block">Classificar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-        </form>
+        </div>
     </div>
-
 {% endblock %}

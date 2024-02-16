@@ -3,23 +3,23 @@
 {% block title %}Classificação{% endblock %}
 
 {% block content %}
-    <div class="container">
-        <h1>Classificação</h1>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Classificação</h1>
         <div class="row">
             <div class="col-md-12">
                 <table class="table table-striped">
-                    <thead>
+                    <thead class="thead-dark">
                         <tr>
-                            <th>Imagem</th>
-                            <th>Tipo Defeito</th>
-                            <th>Imagem</th>
-                            <th>Classificado</th>
+                            <th scope="col">ID</th>
+                            <th scope="col">Tipo de Defeito</th>
+                            <th scope="col">Imagem</th>
+                            <th scope="col">Classificado</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for semente in sementes %}
                             <tr>
-                                <td>{{ semente.Id }}</td>
+                                <th scope="row">{{ semente.Id }}</th>
                                 <td>{{ semente.TipoDefeito }}</td>
                                 <td>{{ semente.Imagem }}</td>
                                 <td>{{ semente.Classificado }}</td>
@@ -30,5 +30,4 @@
             </div>
         </div>
     </div>
-
 {% endblock %}
