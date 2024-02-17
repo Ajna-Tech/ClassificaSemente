@@ -13,11 +13,11 @@
                         <div class="image-preview text-center mb-4">
                             <img src="{{ semente.Imagem.url }}" alt="Imagem da semente" class="img-fluid">
                         </div>
-                        <form method="post">
+                        <form method="post" id="classificacao-form">
                             <div class="form-group">
                                 {% csrf_token %}
                                 {{ updateSemente|crispy }}
-                                <button type="submit" class="btn btn-primary btn-block">Classificar</button>
+                                <button type="submit" class="btn btn-primary btn-block" name="classificar">Classificar</button>
                             </div>
                         </form>
                     </div>
@@ -25,4 +25,31 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var defeitoField = document.getElementById("id_Defeito");
+            var tipoDefeitoField = document.getElementById("id_TipoDefeito");
+            var intensidadeDefeitoField = document.getElementById("id_IntensidadeDefeito");
+
+            // Função para atualizar a visibilidade e habilitação dos campos
+            function updateFieldsVisibilityAndAvailability() {
+                if (defeitoField.checked) {
+                    tipoDefeitoField.disabled = false;
+                    intensidadeDefeitoField.disabled = false;
+                } else {
+                    tipoDefeitoField.disabled = true;
+                    intensidadeDefeitoField.disabled = true;
+                }
+            }
+
+            // Chame a função para configurar o estado inicial dos campos
+            updateFieldsVisibilityAndAvailability();
+
+            // Adicione um ouvinte de eventos para o campo 'Defeito' para atualizar os outros campos
+            defeitoField.addEventListener("change", function () {
+                updateFieldsVisibilityAndAvailability();
+            });
+        });
+    </script>
 {% endblock %}

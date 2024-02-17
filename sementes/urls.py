@@ -7,6 +7,7 @@ from . import views
 urlpatterns = [
     path('', views.classificaSementeInicial, name='classificaSementeInicial'),
     path('classificacao/<int:id>/', views.classificacao, name='classificaSemente'),
-]
+    path('classificar/', views.classifica, name='classificar'),
+    path('criar_em_massa/', views.criar_sementes_em_massa, name='criarSementesEmMassa'),
 
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
