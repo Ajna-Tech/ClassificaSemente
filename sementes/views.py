@@ -10,6 +10,7 @@ from .forms import BulkSementeForm, SementeForm
 from django.contrib.auth.decorators import login_required
 from django.db.models import Max
 
+@login_required
 def classificaSementeInicial(request):
     sementesList = Sementes.objects.all().order_by('Id')
     paginator = Paginator(sementesList, 15)
@@ -20,7 +21,7 @@ def classificaSementeInicial(request):
     context = {'sementes': sementes}
     return render(request, 'sementes/classificaSementeInicial.html', context)
 
-
+@login_required
 def classifica(request):
     # Determina o ID máximo
     id_maximo = Sementes.objects.aggregate(Max('Id'))['Id__max']
@@ -38,8 +39,7 @@ def classifica(request):
     return redirect('classificaSementeInicial')
 
 
-# @login_required
-
+@login_required
 def classificacao(request, id):
     semente_atual = get_object_or_404(Sementes, Id=id)
     proxima_semente = Sementes.objects.filter(Id__gt=id, Classificado=False).order_by('Id').first()
@@ -65,7 +65,7 @@ def classificacao(request, id):
     context = {'updateSemente': SementeForm(instance=semente_atual), 'semente': semente_atual}
     return render(request, 'sementes/classificacaoSemente.html', context)
 
-
+@login_required
 def criar_sementes_em_massa(request):
     if request.method == 'POST':
         form = BulkSementeForm(request.POST, request.FILES)
