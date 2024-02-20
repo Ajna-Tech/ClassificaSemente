@@ -1,15 +1,21 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Classificação{% endblock %}
 
 {% block content %}
     <div class="container mt-5">
-        <h1 class="text-center mb-4">Classificação</h1>
+        <div class="row">
+            <div class="col-md-2">
+                <img src="{% static 'img/logo-vertical.jpg' %}" alt="Logo" class="img-fluid">
+            </div>
+            <div class="col-md-8">
+                <h1 class="text-center mb-4">Classificação</h1>
         <div class="row">
             <div class="col-md-12">
                 <form method="post" action="{% url 'classificar' %}">
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-primary mb-3">Classificar Próximas Sementes</button>
+                    <button type="submit" class="btn btn-primary mb-3">Classificar</button>
                 </form>
                 <table class="table table-striped">
                     <thead class="thead-dark">
